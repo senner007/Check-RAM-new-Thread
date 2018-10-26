@@ -28,26 +28,21 @@ namespace MyApp
             public int ThreadCount;
         }
 
-        public static Int64 GetPhysicalAvailableMemoryInMiB()
+        public static Int64 GetPhysicalAvailableMemoryInMiB() => GetMemory("avail");
+  
+        public static Int64 GetTotalMemoryInMiB() => GetMemory("total");
+
+        public static Int64 GetMemory(string size)
         {
             PerformanceInformation pi = new PerformanceInformation();
             if (GetPerformanceInfo(out pi, Marshal.SizeOf(pi))) {
-                return Convert.ToInt64((pi.PhysicalAvailable.ToInt64() * pi.PageSize.ToInt64() / 1048576));
-            } else {
-                return -1;
-            }
-
-        }
-
-        public static Int64 GetTotalMemoryInMiB()
-        {
-            PerformanceInformation pi = new PerformanceInformation();
-            if (GetPerformanceInfo(out pi, Marshal.SizeOf(pi))) {
-                return Convert.ToInt64((pi.PhysicalTotal.ToInt64() * pi.PageSize.ToInt64() / 1048576));
+                return Convert.ToInt64(((size == "avail" ? pi.PhysicalAvailable.ToInt64() : pi.PhysicalTotal.ToInt64()) * pi.PageSize.ToInt64() / 1048576));
             } else {
                 return -1;
             }
         }
+
+
         public static void GetInfo() 
         {
             Int64 phav = PerformanceInfo.GetPhysicalAvailableMemoryInMiB();

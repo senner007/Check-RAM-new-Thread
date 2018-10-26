@@ -35,7 +35,7 @@ namespace MyApp
         public static Array CreateArray() 
         {
             Random _rand = new Random();
-            return Enumerable.Range(0, 100000000).Select(r => _rand.Next(0, 100 + 1)).ToArray();
+            return Enumerable.Range(0, 1000000000).Select(r => _rand.Next(0, 100 + 1)).ToArray();
         }
         
     }
