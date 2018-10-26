@@ -13,6 +13,7 @@ namespace MyApp
             //https://stackoverflow.com/questions/35714547/c-sharp-console-application-run-for-loop-while-not-disturbing-rest-of-exec
             var t = new Thread(() => TimerLoop());
             t.Start();
+
             System.Console.WriteLine("Processing LINQ");
             System.Console.WriteLine(".....................................");
             var createArray = CreateArray();
@@ -24,7 +25,6 @@ namespace MyApp
         public static void TimerLoop() 
         {
             // https://stackoverflow.com/questions/13019433/calling-a-method-every-x-minutes
-            
             new System.Threading.Timer((e) =>
             {
                     PerformanceInfo.GetInfo();
