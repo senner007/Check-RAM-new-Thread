@@ -26,13 +26,10 @@ namespace MyApp
         }
         public static void ExecuteForLoop() 
         {
-
             // https://stackoverflow.com/questions/13019433/calling-a-method-every-x-minutes
-            var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromSeconds(1);
             System.Console.Write("Processing LINQ");
 
-            var timer = new System.Threading.Timer((e) =>
+            new System.Threading.Timer((e) =>
             {
                     Int64 phav = PerformanceInfo.GetPhysicalAvailableMemoryInMiB();
                     Int64 tot = PerformanceInfo.GetTotalMemoryInMiB();
@@ -44,7 +41,7 @@ namespace MyApp
                     Console.WriteLine("Occupied (%) " + percentOccupied.ToString());
                     System.Console.WriteLine(".....................................");
                   
-            }, null, startTimeSpan, periodTimeSpan);
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }
         
     }
