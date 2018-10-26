@@ -8,23 +8,23 @@ namespace MyApp
 {
     class Program
     {
-      static void Main()
+        static void Main()
         {
             //https://stackoverflow.com/questions/35714547/c-sharp-console-application-run-for-loop-while-not-disturbing-rest-of-exec
-            var t = new Thread(() => ExecuteForLoop());
+            var t = new Thread(() => TimerLoop());
             t.Start();
-
+            System.Console.WriteLine("Processing LINQ");
+            System.Console.WriteLine(".....................................");
             var createArray = CreateArray();
             System.Console.WriteLine( "Done!");
             System.Console.WriteLine( createArray.Length  );
-            
+
             t.Join(); // See this answer : http://stackoverflow.com/a/14131739/4546874
         }
-        public static void ExecuteForLoop() 
+        public static void TimerLoop() 
         {
             // https://stackoverflow.com/questions/13019433/calling-a-method-every-x-minutes
-            System.Console.Write("Processing LINQ");
-
+            
             new System.Threading.Timer((e) =>
             {
                     PerformanceInfo.GetInfo();
